@@ -1,3 +1,4 @@
+
 //
 //  SubjectViewController.m
 //  RACDemo
@@ -7,6 +8,7 @@
 //
 
 #import "SubjectViewController.h"
+#import <Masonry/Masonry.h>
 
 @interface SubjectViewController ()
 
@@ -17,6 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:button];
+    [button setTitle:@"back" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        if (self.subject) {
+            [self.subject sendNext:@(2)];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.centerY.equalTo(self.view);
+    }];
+
 }
 
 /*
