@@ -790,7 +790,7 @@
         //订阅定时器信号，启动定时器，只打印5次
         NSLog(@"interval,定时器打印");
     }];
-    //一直打印
+    //一直执行
 //    [[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]] subscribeNext:^(NSDate * _Nullable x) {
 //        NSLog(@"interval");
 //    }];
